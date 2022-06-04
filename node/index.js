@@ -9,6 +9,12 @@ app.use(express.static(path.join(__dirname, '../react/build')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+//전용 라우터 호출
+app.use(
+	'/api/community',
+	require('./router/communityRouter.js')
+);
+
 app.listen(port, () => {
 	mongoose
 	.connect('mongodb+srv://Jujungmin:zxcvzmfhd2!@cluster0.n0zcs.mongodb.net/reactNode?retryWrites=true&w=majority')
@@ -20,12 +26,6 @@ app.listen(port, () => {
 		console.log(err);
 	});
 })
-
-//전용 라우터 호출
-app.use(
-	'/api/community',
-	require('./router/communityRouter.js')
-);
 
 app.get('/', (req, res) => {
 	res.sendFile(
