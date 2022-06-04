@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-const postSchema = new mongoose.Schema({
-		title: String,
-		content: String,
+const counterSchema = new mongoose.Schema(
+	{
+		name: String,
+		communityNum: Number,
 	},
-	{collection: 'Community'})
-;
+	{ collection: 'Counter' }
+);
 
-const Post = mongoose.model('Post', postSchema);
-module.exports = {Post};
+const Counter = mongoose.model('Counter', counterSchema);
+module.exports = { Counter };
