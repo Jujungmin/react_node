@@ -4,14 +4,13 @@ const app = express();
 const mongoose = require('mongoose');
 const port = 5000;
 
-// express에서 react폴더 안쪽의 build폴더를 static으로 지정
 app.use(express.static(path.join(__dirname, '../react/build')));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // Post모델 불러옴
-const {post} = require('./model/postSchema.js');
+const { Post } = require('./model/postSchema.js');
 
 app.listen(port, () => {
 	mongoose
@@ -29,7 +28,6 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../react/build/index.html'));
 });
 
-// react로부터 받은 요청처리
 app.post('/api/create', (req, res) => {
 	console.log(req.body);
 	
@@ -46,3 +44,19 @@ app.post('/api/create', (req, res) => {
 		res.status(400).json({success: false});
 	})
 });
+
+// 게시글요청
+app.post('/api/read', (req, res) => {
+	Post.find()
+	.exec()
+	.then((doc) => 
+		res
+			.status(200)
+			.json({success: true, communityList: doc})
+		)
+		.catch((err) => {
+			console.log(err);
+			res.status(400).json({success: false});
+		})
+
+})
