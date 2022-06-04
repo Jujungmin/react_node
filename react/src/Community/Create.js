@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../Common/Layout';
 
 function Create() {
+	const navigate = useNavigate();
 	const [tit, setTit] = useState('');
 	const [con, setCon] = useState('');
 
@@ -18,6 +20,7 @@ function Create() {
 				console.log(res);
 				if (res.data.success) {
 					alert('데이터 저장에 성공했습니다.');
+					navigate('/list');
 				} else {
 					alert('데이터 저장에 실패했습니다');
 				}
