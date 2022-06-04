@@ -1,46 +1,21 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { BrowserRouter as Routes, Route } from "react-router-dom";
+
+import Header from './Common/Header';
+import Main from './Common/Main';
+import List from './Community/List';
+import Create from './Community/Create';
 
 function App() {
-	const [tit, setTit] = useState('');
-	const [con, setCon] = useState('');
-
-	const handleCreate = () => {
-		const item = {
-			title: tit,
-			content: con,
-		};
-
-		axios
-		.post('/api/create', item)
-		.then((res) => {
-			console.log(res);
-			if(res.data.success) {
-				alert('데이터 저장에 성공했습니다.');
-			} else {
-				alert('데이터 저장에 실패했습니다.');
-			}
-		})
-		.catch((err) => {
-			console.log(err);
-		})
-	};
-
-	useEffect(() => {}, []);
-
 	return (
-		<section>
-			<label htmlFor='tit'>Title</label>
-			<br />
-			<input type='text' id='tit' value={tit} onChange={(e) => setTit(e.target.value)} />
-			<br />
-			<label htmlFor='con'>Content</label>
-			<br />
-			<textarea id='con' value={con} onChange={(e) => setCon(e.target.value)}></textarea>
-			<br />
-			<button onClick={handleCreate}>SEND</button>
-		</section>
-	)
+		<>
+			<Header />
+			<Routes>
+				<Route path='/' element={<Main />} />
+				<Route path='/list' element={<List />} />
+				<Route path='/create' element={<Create />} />
+			</Routes>
+		</>
+	);
 }
 
 export default App;
