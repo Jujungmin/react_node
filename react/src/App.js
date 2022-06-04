@@ -1,7 +1,7 @@
 import { BrowserRouter as Routes, Route } from "react-router-dom";
 
 import Header from './Common/Header';
-import Main from './Common/Main';
+import Main from './Main';
 import List from './Community/List';
 import Create from './Community/Create';
 
