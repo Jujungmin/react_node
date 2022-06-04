@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../Common/Layout';
 
 function List() {
@@ -23,7 +24,10 @@ function List() {
 		<Layout name={'List'}>
 			{List.map((post, idx) => {
 				<article key={post._id}>
-					<h2>{post.title}</h2>
+					{/* 각 제목 라우터 링크로 글 고유번호 추가 */}
+					<Link to={`/detail/${post.communityNum}`}>
+						{post.title}
+					</Link>
 				</article>
 			})}
 		</Layout>
