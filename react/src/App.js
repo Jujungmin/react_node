@@ -5,10 +5,12 @@ import Main from './Main';
 import List from './Community/List';
 import Create from './Community/Create';
 import Detail from './Community/Detail';
+import GlobalStyles from "./Styles/GlobalStyles";
 
 function App() {
 	return (
 		<>
+			<GlobalStyles />
 			<Header />
 			<Routes>
 				<Route path='/' element={<Main />} />
